@@ -18,8 +18,8 @@ Novobridge is an automated pipeline for fast processing, and integrated annotati
 ## Basic use
 
 #### How does it work?
-The current version of the pipeline is included as a single script: <code>Novobridge.py</code>, which can be run from any python interpreter. 
-The pipeline uses UniPept API methods `pept2lca` and `pept2fun` to annotate taxonomy and function and uses the KEGG database to match the functional annotations to pathways based on EC numbers.
+The current version of the pipeline is included as a single script: <code>Novobridge+.py</code>, which can be run from any python interpreter. 
+The pipeline uses UniPept API methods `pept2lca` and `pept2fun` to annotate taxonomy and function and uses the KEGG database to match the functional annotations to pathways based on EC numbers. It is based on the repository hbckleikamp/NovoBridge with two modifications. 1. Miscleavage handling: by cleaving any uncleaved peptides with Trypsin, and 2. Multiple candidate submission: PEAKs software generates multiple candidate sequences for each petpide, starting with the longest, bests scoring sequence, sequences are submitted to Unipept until a match is returned.
 
 <br>
 
@@ -35,7 +35,7 @@ In Part 3: Unipept functional annotations are matched to KEGG orthologies and qu
 
 <br>
 
-#### Running Novobridge
+#### Running Novobridge+
 - Novobridge is designed as a single "tunable" python script. 
 - Novobridge does not offer command line options, but parameters can be altered in the script `Novobridge.py`
 - The script will automatically loop through all files present in the folder `input_peaks`, located in the same folder as `Novobridge.py`
