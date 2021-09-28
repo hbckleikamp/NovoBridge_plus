@@ -358,7 +358,7 @@ for filename in ["/Volumes/Seagate_SSD/NovoBridge-main 2/input_peaks/all_de_novo
                     #unwind in case of thread overload, unipept does not like too many requests
                     cur_thread=threading.active_count()
                     if (cur_thread-base_thread)>100:
-                        print("unwinding, pept2prot at: "+str(counter/len(unipeps)))
+                        print("unwinding, query at: "+str(counter/len(unipeps)))
                         for thread in threads:
                             thread.join()
                         threads=[] #this seems to act different on windows?
