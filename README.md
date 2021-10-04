@@ -9,9 +9,9 @@ The pipeline was established and tested with shotgun (meta)proteomics data obtai
 NovoBridge has been tested online in an Anaconda Spyder environment!
 <br>
 Novobridge + is essentially the same pipeline as Novobridge, with two modifications:
--1.tryptic digestion of uncleaved peptides.
+1. Tryptic digestion of uncleaved peptides:
 Since uncleaved peptides do not give an exact match with unipept API, each uncleaved peptide is cleaved and its peptides are submitted seperately.
--2.multiple candidate submission.
+2. Multiple candidate submission:
 Since both PEAKs and Deepnovo can have mutiple good scoring candidate peptides for a single spectra, subsequent submission of candidate peptides is performed to increase recall.
 
 <br>
