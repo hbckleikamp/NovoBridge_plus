@@ -248,13 +248,14 @@ for filename in ["/Volumes/Seagate_SSD/NovoBridge-main 2/input_peaks/all_de_novo
             #tabular format
             #added dynamic delimiter detection
             if filename.endswith('.csv'):
-                xlsdf=pd.read_csv(str(Path(pathin,filename)),sep=",")
-                delims=[i[0] for i in Counter([i for i in str(xlsdf.iloc[0]) if not i.isalnum()]).most_common()]
-                for delim in delims:
-                    if delim==" ": sep="\s"
-                    xlsdf=pd.read_csv(str(Path(pathin,filename)),sep=delim)
-                    if "Peptide" in df.columns:
-                        break
+                xlsdf=pd.read_csv(str(Path(pathin,filename)))
+                if "Peptide" not in xlsdf.columns: 
+                    delims=[i[0] for i in Counter([i for i in str(xlsdf.iloc[0]) if not i.isalnum()]).most_common()]
+                    for delim in delims:
+                        if delim==" ": sep="\s"
+                        xlsdf=pd.read_csv(str(Path(pathin,filename)),sep=delim)
+                        if "Peptide" in xlsdf.columns:
+                            break
                         
             if filename.endswith('.tsv'):                               xlsdf=pd.read_csv(filepath,sep="\t")
             #excel input
@@ -333,15 +334,14 @@ for filename in ["/Volumes/Seagate_SSD/NovoBridge-main 2/input_peaks/all_de_novo
                 
                 ranks=[rank+"_name" for rank in comp_ranks]
                 fields=["peptide"]+ranks
-                  
+                
+                base_thread=threading.active_count()
                 unipeps=np.unique(xlsdf['Peptide'])
                 batchsize=100
                 steps=list(range(0,len(unipeps),batchsize))
                 taxalist=list()
                 funlist=list()
-    
-    
-                base_thread=threading.active_count()
+
                 threads=[]
                 counter=0
                 for chunk in chunks(unipeps,batchsize):
