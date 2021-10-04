@@ -1,4 +1,4 @@
-# NovoBridge
+# NovoBridge +
 
 This is the repository for the NovoBridge pipeline, as described in:<br>
 Hugo B. C. Kleikamp, Mario Pronk, Claudia Tugui, Leonor Guedes da Silva, Ben Abbas, Yue Mei Lin, Mark C.M. van Loosdrecht and Martin Pabst* Database-independent de novo metaproteomics of complex microbial communities, Cell Systems (2021)
@@ -6,6 +6,12 @@ doi:10.1016/j.cels.2021.04.003
 
 The pipeline was established and tested with shotgun (meta)proteomics data obtained from Q Exactive Orbitrap Mass Spectrometers, using either PEAKS or DeepNovo generated de novo sequence lists. The generation of accurate de novo peptide sequence lists depends on high quality peptide sequencing spectra.
 
+NovoBridge has been tested online in an Anaconda Spyder environment!
+Novobridge + is essentially the same pipeline as Novobridge, with two modifications:
+1.tryptic digestion of uncleaved peptides.
+Since uncleaved peptides do not give an exact match with unipept API, each uncleaved peptide is cleaved and its peptides are submitted seperately.
+2.multiple candidate submission.
+Since both PEAKs and Deepnovo can have mutiple good scoring candidate peptides for a single spectra, subsequent submission of candidate peptides is performed to increase recall.
 
 <br>
 
