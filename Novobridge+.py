@@ -246,7 +246,16 @@ for filename in ["/Volumes/Seagate_SSD/NovoBridge-main 2/input_peaks/all_de_novo
             if filename.endswith(('.fasta','.fa','.faa')):              xlsdf=fasta_digest(filepath)          
             
             #tabular format
-            if filename.endswith('.csv'):                               xlsdf=pd.read_csv(filepath,sep=",")
+            #added dynamic delimiter detection
+            if filename.endswith('.csv'):
+                xlsdf=pd.read_csv(str(Path(pathin,filename)),sep=",")
+                delims=[i[0] for i in Counter([i for i in str(xlsdf.iloc[0]) if not i.isalnum()]).most_common()]
+                for delim in delims:
+                    if delim==" ": sep="\s"
+                    xlsdf=pd.read_csv(str(Path(pathin,filename)),sep=delim)
+                    if "Peptide" in df.columns:
+                        break
+                        
             if filename.endswith('.tsv'):                               xlsdf=pd.read_csv(filepath,sep="\t")
             #excel input
             if filename.endswith('.xlsx') or filename.endswith('.xls'): xlsdf=pd.read_excel(filepath,engine='openpyxl')   
