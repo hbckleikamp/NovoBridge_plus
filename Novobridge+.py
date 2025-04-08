@@ -58,7 +58,7 @@ comp_Intensity_cutoff=0 # mininum required intensity
 cutbranch=3    # minimum amount of unique peptides per taxonomic branch in denoising
 
 #Which ranks to annotate
-comp_ranks=["superkingdom","phylum","class","order","family","genus","species"]
+comp_ranks=["domain","phylum","class","order","family","genus","species"]
 
 #quantification parameters
 tax_count_targets=["Spectral_counts"]#,"Area","Intensity"]
@@ -381,7 +381,7 @@ for filename in ["/Volumes/Seagate_SSD/NovoBridge-main 2/input_peaks/all_de_novo
                 #%% post processing
                 
                 #parse taxonomy dataframe
-                fields=["peptide","taxon_name","superkingdom_name","phylum_name","class_name","order_name","family_name","genus_name","species_name"];
+                fields=["peptide","taxon_name","domain_name","phylum_name","class_name","order_name","family_name","genus_name","species_name"];
                 taxa=pd.DataFrame(taxalist)
                 [taxa.pop(x) for x in taxa.columns if x not in fields]
                 taxa=taxa.rename(columns={"peptide":"Peptide"})
